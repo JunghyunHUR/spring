@@ -1,0 +1,68 @@
+Spring
+
+
+@Service @Repository @Component
+@Autowired @Transactional @Scope
+
+mvc
+@Controller @RequestMapping @PathVariable
+@ModelAttribute @SessionAttributes
+
+Security
+@preAuthorize
+
+	HandlerMapping		HandlerAdapter
+		     |		|
+Client---------------->DispatcherServlet<------------------->Controller
+		  ↗	         ↖	  Model And View
+		/	           ＼
+	View(JSP)			ViewResolver
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

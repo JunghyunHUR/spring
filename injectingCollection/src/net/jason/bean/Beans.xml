@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="JavaCollection" class="net.jason.sp.JavaCollection">
+		<property name="addressList">
+			<list>
+				<value>홍콩</value>
+				<value>대만</value>
+				<value>싱가폴</value>
+				<value>싱가폴</value>
+			</list>
+		</property>
+		
+		<property name="addressSet">
+			<set>
+				<value>홍콩스</value>
+				<value>대만스</value>
+				<value>싱가폴스</value>
+				<value>싱가폴스</value>
+			</set>
+		</property>
+		
+		<property name="addressMap">
+			<map>
+				<entry key="1" value="홍콩" />
+				<entry key="2" value="대만" />
+				<entry key="3" value="싱가폴" />
+				<entry key="4" value="싱가폴" />
+			</map>
+		</property>
+		
+		<property name="addressProps">
+			<props>
+				<prop key="one">홍콩</prop>
+				<prop key="one">홍콩</prop>
+				<prop key="two">대만</prop>
+				<prop key="three">싱가폴</prop>
+				<prop key="four">싱가폴</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

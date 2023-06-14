@@ -1,0 +1,26 @@
+package student;
+
+public class StudentInfo {
+	
+	private Student student;
+
+	//constructor로 초기화
+	public StudentInfo(Student student) {
+		this.student = student;
+	}
+
+	//method로 초기화
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public void getStudentInfo() {
+		if(student != null) {
+			System.out.println("이름 : " + student.getName());
+			System.out.println("나이 : " + student.getAge());
+			System.out.println("학년 : " + student.getGradeNum());
+			System.out.println("반 : " + student.getClassNum());
+			System.out.println("=====================");
+		}
+	}
+}

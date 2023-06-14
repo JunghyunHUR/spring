@@ -1,0 +1,20 @@
+Spring 
+
+1. ClassPathXmlApplicationContext
+ -- class path 를 경로로 이용
+
+2. FileSystemXmlApplicationContext
+ -- 파일 시스템 경로를 이용 C:/asdas/asdf
+
+3. XmlWebApplicationContext
+ -- 웹 경로를 이용
+
+4. AnnotationConfigApplicationContext
+ -- Annotation을 이용
+
+
+
+
+
+
+ 

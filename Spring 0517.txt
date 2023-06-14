@@ -1,0 +1,79 @@
+Spring
+
+Spring Framework
+
+Data Access / Integration
+
+JDBC	ORM
+OXM	JMS
+Transaction
+
+Web (MVC / Remoting)
+
+AOP		ASPECTS		INSTRUMENTATION	MESSAGING
+
+		CORE CONTAINER
+
+BEANS		CORE		CONTEXT			SPEL
+
+		TEST
+
+CORE - IOC (종속성 주입 - 부품조립) 을 포함한 framework의 기본 부분을 담당
+BEAN - (주문서) 구현을 위한 BeanFactory를 제공
+Context - Context모듈은 core 및 bean의 구현체
+SpEL - 런타임에 개체 그래프를 쿼리 하고 조작 하기 위한 표현 언어
+
+iBatis => 관계형 매핑 API
+MVC (Model View Controller) => 
+
+
+IOC 컨테이너
+
+Spring BeanFactory Container: DI에 대한 기본 지원을 제공하는 간단한 컨테이너
+
+Spring ApplicationContext Container : 속성파일에서 텍스트 메시지 확인 기능,
+				이벤트 수신기, 응용프로그램 이벤트 게시
+
+
+Bean
+ 1. class - 클래스를 지정하는 필수 소스
+ 2. name - bean의 식별자를 지정 id, name 속성을 사용하여 식별자를 지정
+ 3. scope - bean의 생명주기 (범위)
+ 4. construct-org - 생성자 적용
+ 5. properties
+ 6. autowiring mode - 자동배선 모드
+ 7. initialization method - 초기화 방법
+ 8. lazy=initialization method - 초기화 모드 (IOC 컨테이너 시작 시기가 아니라 처음 요철할 때
+				       bean 인스턴스를 생성하도록 지시
+ 9. destruction - 컨테이너가 파괴될 때 사용되는 콜백 (bean의 생명주기와 관련)
+
+
+Bean의 Scope
+ 1. 기본 scope는 singleton : IoC Container가 단인 instance를 지정 (Default)
+ 2. prototype : 임의 개수의 개체 instance를 만든다.
+ 3. request
+ 4. session
+ 5. global-session
+
+
+public class ExampleBean {
+	public void init(){
+		//초기화 할 때 실행
+	}
+}
+
+public class ExampleBean {
+	void destroy() throws Exception;
+}
+
+public class ExampleBean implements DisposableBean {
+	void destroy(){
+		//파괴 되기 전 실행문
+	}
+}
+
+
+
+
+
+

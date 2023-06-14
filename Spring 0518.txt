@@ -1,0 +1,72 @@
+Spring
+
+DI (Dependency Injection) 의존관계 (조립하기)
+
+class BaekDabangArba{
+	private BDCoffeeRecipe bdcoffeerecipe;
+
+	public BaekDabangArba(){
+		bdcoffeerecipe = new BDCoffeeRecipe
+	}
+}
+
+class BaekDabang{
+
+} 
+
+interface BaekTeacherRecipe {
+	new Amercano();
+	//그 외 기타 등등 메소드
+}
+
+class BDCoffeeRecipe implement 
+
+
+
+생성자를 이용하는 방법
+메소드를 이용하는 방법
+
+1. SpringExample 인 프로젝트를 생성
+2. Maven project 로 변경하고 SpringFrameWork를 주입한다.
+3. java library class TextEditor, SpellChecker를 생성
+4. 실행 class 로 MainApp 생성
+5. Beans 구성할 Beans.xml 생성
+
+
+
+
+Bean 에서
+
+list ==> java.util.List
+set ==> jav.util.Set (중복을 허용하지 않는 집합)
+map ==> java.util.Map (특정 key로 데이터를 등록하고 사용)
+props ==> java.util.Properties (key = value 형태)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

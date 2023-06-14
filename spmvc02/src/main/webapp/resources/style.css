@@ -1,0 +1,44 @@
+@charset "UTF-8";
+.text-center{
+	text-align: center;
+}
+.container{
+	width: 1200px;
+	max-width: 100%;
+	margin: 40px auto;
+}
+ul.register{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+ul.register li{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #ccc;
+}
+ul.register label{
+	display: inline-block;
+	width: 120px;
+	text-align: right;
+	font-weight: bold;
+	font-size: 18px
+}
+ul.register input{
+	border: 1px solid #ccc;
+	padding: 5px 8px;
+	font-size: 16px;
+	width: 70%;
+	margin-left: 20px;
+}
+.btnbox{
+	margin-top: 40px;	
+	margin-bottom: 40px;
+}
+.btnbox button{
+	padding: 20px 10px;
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 20px;
+	margin-right: 20px;
+}

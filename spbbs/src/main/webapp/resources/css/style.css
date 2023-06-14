@@ -1,0 +1,63 @@
+@charset "UTF-8";
+*{box-sizing: border-box;}
+body{
+	font-size: 16px;
+	color: #000;
+	font-family: 'Gowun Dodum', sans-serif;
+	/*
+	font-family: 'Noto Sans KR', sans-serif;
+	*/	
+}
+a, a:hover{
+	color: #000;
+}
+table.bbsList{
+	width: 100%;
+	border-bottom: 2px solid #333;
+	margin-bottom: 20px;
+}
+.bbsList th{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 1px solid #999;
+	border-bottom: 2px solid #999;
+	text-align: center;
+	position: relative;
+}
+.bbsList th:not(:last-child)::after{
+	content: "";
+	display: block;
+	width: 1px;
+	height: 15px;
+	top: 15px;
+	right: 0;
+	background: #999;
+	position: absolute;
+}
+.bbsList td{
+	padding: 15px;
+	border-bottom: 1px solid #999;
+}
+.bbsList td.title{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.button-group{
+	display: inline-block;
+	float: right;
+	text-align: end;
+}
+.button-group a.btn{
+	margin-left: 10px;
+	margin-right: 10px;
+	color: #fff;
+}
+.button-group a.btn:last-child{
+	margin-right: 0;
+}
+
+.detail li{
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
