@@ -6,9 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 public class BlogDao implements BlogConfig {
-	
+
 	private static BlogDao dao;
-	private BlogDao() {};
+	private BlogDao() {}
 	
 	public static BlogDao getInterface() {
 		if(dao == null) dao = new BlogDao();
@@ -16,7 +16,7 @@ public class BlogDao implements BlogConfig {
 	}
 	
 	//SQL 세션 열기
-	SqlSessionFactory sft = SqlMapSessionFactory.getSqlSessionFactory();
+	SqlSessionFactory sft = SqlMapSessionFactory.getSqlSessionFactory(); 
 	
 	@Override
 	public int bListCount() {
@@ -26,9 +26,9 @@ public class BlogDao implements BlogConfig {
 
 	@Override
 	public List<BlogDto> bList() {
-		SqlSession session = sft.openSession();
-		List<BlogDto> dto = session.selectList("net.jason.database.blogMapper.blogList");
-		session.close();
+        SqlSession session = sft.openSession();
+        List<BlogDto> dto = session.selectList("net.jason.database.blogMapper.blogList");
+        session.close();
 		return dto;
 	}
 

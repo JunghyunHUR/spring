@@ -8,17 +8,19 @@ import lombok.Data;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
  */
 @Data
 public class BlogDto {
+   
 	private int num;
 	private String title;
 	private String content;
-	int imgct;
-	private String writer;
-	private Timestamp wdate;
-	private String categorya;
-	private String categoryb;
+    int imgct;
+    private String writer;
+    private Timestamp wdate;
+    private String categorya;
+    private String categoryb;
+	
 }

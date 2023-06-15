@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
 <mapper namespace="net.jason.database.blogMapper">
-	<select id="blogCount" resultType="Integer">
-		Select count(*) from blog
-	</select>
-	
-	<select id="blogView" parameterType="Integer" resultType="net.jason.database.BlogDto">
-	Select * form blog where num = #{num}
-	</select>
-	
-	<select id="blogList" resultType="net.jason.database.BlogDto">
-		Select * from blog
-	</select>
-	
-	<insert id="blogInsert" parameterType="net.jason.database.BlogDto">
-		insert into blog (title, content, imgct, writer, categorya, categoryb) 
-		values (#{title}, #{content}, #{imgct), #{writer}, #{categorya}, #{categoryb})
-	</insert>
-	
-	<update id="blogUpdate" parameterType="net.jason.database.BlogDto">
-		update blog set 
-		title = #{title}, content = #{content}, imgct = #{imgct}, writer = #{writer}, 
-		categorya = #{categorya}, categoryb = #{categoryb}
-		where num = #{num}
-	</update>
-	
-	<delete id="blogDelete" parameterType="Integer">
-		delete from blog where num = #{num}
-	</delete>
-	
-</mapper>
+
+   <select id="blogCount" resultType="Integer">
+       SELECT count(*) FROM blog
+   </select>
+
+   <select id="blogView" parameterType="Integer" resultType="net.jason.database.BlogDto">
+       SELECT * FROM blog WHERE num=#{num}
+   </select>
+   
+   <select id="blogList" resultType="net.jason.database.BlogDto">
+       SELECT * FROM blog 
+   </select>
+   
+   <insert id="blogInsert" parameterType="net.jason.database.BlogDto">
+       INSERT INTO blog (title, content, imgct, writer, categorya, categoryb)
+       VALUES (#{title}, #{content}, #{imgct}, #{writer}, #{categorya}, #{categoryb})
+   </insert>
+   
+   <update id="blogUpdate" parameterType="net.jason.database.BlogDto">
+       UPDATE blog SET 
+          title=#{title}, content=#{content}, imgct=#{imgct}, writer=#{writer}, categorya=#{categorya}, categoryb=#{categoryb}
+       WHERE num=#{num}   
+   </update>
+   
+   <delete id="blogDelete" parameterType="Integer">
+       DELETE FROM blog WHERE num=#{num}
+   </delete>
+   
+</mapper>   
+    
+    
