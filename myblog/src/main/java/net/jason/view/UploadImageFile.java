@@ -3,6 +3,7 @@ package net.jason.view;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -42,7 +44,10 @@ public class UploadImageFile extends HttpServlet {
 		fileItemFactory.setRepository(attacheDir);
 		fileItemFactory.setSizeThreshold(LIMIT_SIZE);
 		ServletFileUpload fileUpload = new ServletFileUpload(fileItemFactory);
-		
+		HttpSession session = req.getSession();
+		if(session.getAttribute("imname") == null) {
+			session.setAttribute("imname", Integer.toString((int)System.currentTimeMillis() / 1000));			
+		}
 		res.setContentType("text/html; charset=utf-8");
 		
 		try {
@@ -57,21 +62,24 @@ public class UploadImageFile extends HttpServlet {
 				String nname = nfilename + ext;
 				File uploadedFile = new File(ATTACHE_DIR + File.separator + nname);
 				item.write(uploadedFile);
-				long filesize = item.getSize();
+				int filesize = (int) item.getSize();
 				
 				System.out.printf("파라미터명 : %s, 파일명 : %s, 파일크기 : %s byte, 새 파일명 : %s \n",
-						item.getFieldName(), item.getName(), filesize, nname);
+						item.getFieldName(), oname, filesize, nname);
+				int imname = Integer.parseInt((String)session.getAttribute("imname"));
 				
 				fDto.setNewname(nname);
 				fDto.setOldname(oname);
 				fDto.setFilesize(filesize);
 				fDto.setExt(ext);
-			
+				fDto.setImname(imname);
+
+				int result = blogfile.fileInsert(fDto);
+				System.out.println("업데이트된 번호"+result);
+				
 				//JSON 타입으로 리턴
-				obj.addProperty("url", "https://localhost:3000/data/images/" + nname);
-				nname = null;
-				oname = null;
-				ext = null;
+				obj.addProperty("url", "http://localhost:3000/data/images/" + nname);
+				
 			}
 			
 			out.println(obj);

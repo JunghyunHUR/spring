@@ -7,10 +7,11 @@ public interface BlogConfig {
 	public int bListCount();
 	public List<BlogDto> bList();
 	public BlogDto bView(Integer num);
-	public int Bupdate(BlogDto blogDto);
-	public int Binsert(BlogDto blogDto);
-	public int Bdelete(Integer num);
-	public int insertFile(FileDto filedto);
-	public int updateFile(FileDto filedto);
+	public int bUpdate(BlogDto blogDto);
+	public int bInsert(BlogDto blogDto);
+	public int bDelete(Integer num);
+	public int fileInsert(FileDto fileDto);
+	public int fileUpdate(FileDto fileDto);
+	public int fileDelete(Integer num);
 	
 }

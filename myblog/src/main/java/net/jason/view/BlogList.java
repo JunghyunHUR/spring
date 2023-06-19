@@ -26,7 +26,7 @@ public class BlogList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		res.setContentType("text/plan;charset=UTF-8");
+		res.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = res.getWriter();
 		
 		BlogImpl blog = new BlogImpl();

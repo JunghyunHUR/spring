@@ -1,8 +1,5 @@
 package net.jason.database;
 
-import lombok.Data;
-
-@Data
 public class FileDto {
 	private int num;
 	private int blog_num;
@@ -10,6 +7,7 @@ public class FileDto {
 	private String newname;
 	private String ext;
 	private long filesize;
+	private int imname;
 	
 	public int getNum() {
 		return num;
@@ -46,6 +44,12 @@ public class FileDto {
 	}
 	public void setFilesize(long filesize) {
 		this.filesize = filesize;
+	}
+	public int getImname() {
+		return imname;
+	}
+	public void setImname(int imname) {
+		this.imname = imname;
 	}
 
 }

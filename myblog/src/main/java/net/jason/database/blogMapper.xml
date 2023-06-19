@@ -4,33 +4,47 @@
    
 <mapper namespace="net.jason.database.blogMapper">
 
-   <select id="blogCount" resultType="Integer">
-       SELECT count(*) FROM blog
-   </select>
+	<select id="blogCount" resultType="Integer">
+		SELECT count(*) FROM blog
+	</select>
 
-   <select id="blogView" parameterType="Integer" resultType="net.jason.database.BlogDto">
-       SELECT * FROM blog WHERE num=#{num}
-   </select>
+	<select id="blogView" parameterType="Integer" resultType="net.jason.database.BlogDto">
+		SELECT * FROM blog WHERE num=#{num}
+	</select>
    
-   <select id="blogList" resultType="net.jason.database.BlogDto">
-       SELECT * FROM blog 
-   </select>
+	<select id="blogList" resultType="net.jason.database.BlogDto">
+		SELECT * FROM blog 
+	</select>
    
-   <insert id="blogInsert" parameterType="net.jason.database.BlogDto">
-       INSERT INTO blog (title, content, imgct, writer, categorya, categoryb)
-       VALUES (#{title}, #{content}, #{imgct}, #{writer}, #{categorya}, #{categoryb})
-   </insert>
+	<insert id="blogInsert" parameterType="net.jason.database.BlogDto" useGeneratedKeys="true" keyProperty="num">
+		INSERT INTO blog (title, content, imgct, writer, categorya, categoryb, imname)
+		VALUES (#{title}, #{content}, #{imgct}, #{writer}, #{categorya}, #{categoryb}, #{imname})
+	</insert>
+	
+	<insert id="insertFile" parameterType="net.jason.database.FileDto" useGeneratedKeys="true" keyProperty="num">
+		INSERT INTO blog_img (blog_num, oldname, newname, ext, filesize, imname)
+		VALUES (#{blog_num}, #{oldname}, #{newname}, #{ext}, #{filesize}, #{imname}) 
+	</insert>
    
-   <update id="blogUpdate" parameterType="net.jason.database.BlogDto">
-       UPDATE blog SET 
-          title=#{title}, content=#{content}, imgct=#{imgct}, writer=#{writer}, categorya=#{categorya}, categoryb=#{categoryb}
-       WHERE num=#{num}   
-   </update>
+	<update id="blogUpdate" parameterType="net.jason.database.BlogDto">
+		UPDATE blog SET 
+		title = #{title}, content = #{content}, imgct = #{imgct}, writer = #{writer}, categorya = #{categorya}, categoryb = #{categoryb}
+		WHERE num = #{num}   
+	</update>
+	
+	<update id="updateFile" parameterType="net.jason.database.FileDto">
+		UPDATE blog_img set
+			oldname = #{oldname}, newname=#{newname}, ext=#{ext}, filesize=#{filesize}
+		WHERE num = #{num}
+	</update>
    
-   <delete id="blogDelete" parameterType="Integer">
-       DELETE FROM blog WHERE num=#{num}
-   </delete>
-   
+	<delete id="blogDelete" parameterType="Integer">
+		DELETE FROM blog WHERE num=#{num}
+	</delete>
+	
+	<delete id="deleteFile" parameterType="Integer">
+		DELETE FROM blog_img WHERE num = #{num} 
+	</delete>
 </mapper>   
     
     

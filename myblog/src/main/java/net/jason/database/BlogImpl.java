@@ -24,19 +24,36 @@ public class BlogImpl implements BlogConfig {
 	}
 
 	@Override
-	public int Bupdate(BlogDto blogDto) {
+	public int bUpdate(BlogDto blogDto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int Binsert(BlogDto blogDto) {
+	public int bInsert(BlogDto blogDto) {
+		return dao.bInsert(blogDto);
+	}
+
+	@Override
+	public int bDelete(Integer num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int Bdelete(Integer num) {
+	public int fileInsert(FileDto fileDto) {
+		
+		return dao.fileInsert(fileDto);
+	}
+
+	@Override
+	public int fileUpdate(FileDto fileDto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int fileDelete(Integer num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

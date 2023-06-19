@@ -106,9 +106,8 @@
                     processData: false,
                     success: function(rs){
                         //업로드 한 파일의 url을 받아서 본문에 붙여야 함.
-                        //let res = JSON.parse(rs);
-                        //$(editor).summernote("insertImage", res.url);
-                        console.log(rs);
+                        let res = JSON.parse(rs);
+                        $(editor).summernote("insertImage", res.url);
                     }
                 })
             }

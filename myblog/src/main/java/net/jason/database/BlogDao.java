@@ -39,19 +39,43 @@ public class BlogDao implements BlogConfig {
 	}
 
 	@Override
-	public int Bupdate(BlogDto blogDto) {
+	public int bUpdate(BlogDto blogDto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int Binsert(BlogDto blogDto) {
+	public int bInsert(BlogDto blogDto) {
+		SqlSession session = sft.openSession();
+		session.insert("net.jason.database.blogMapper.blogInsert", blogDto);
+		session.commit();
+		session.close();
+		return blogDto.getNum();
+	}
+
+	@Override
+	public int bDelete(Integer num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int Bdelete(Integer num) {
+	public int fileInsert(FileDto fileDto) {
+		SqlSession session = sft.openSession();
+		session.insert("net.jason.database.blogMapper.insertFile", fileDto);
+		session.commit();
+		session.close();
+		return fileDto.getNum();
+	}
+
+	@Override
+	public int fileUpdate(FileDto fileDto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int fileDelete(Integer num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
