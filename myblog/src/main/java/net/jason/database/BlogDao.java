@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-public class BlogDao implements BlogConfig {
+public class BlogDao implements BlogConfig, FileConfig {
 
 	private static BlogDao dao;
 	private BlogDao() {}
@@ -20,8 +20,10 @@ public class BlogDao implements BlogConfig {
 	
 	@Override
 	public int bListCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = sft.openSession();
+		int rs = session.selectOne("net.jason.database.blogMapper.blogCount");
+		session.close();
+		return rs;
 	}
 
 	@Override
@@ -34,14 +36,18 @@ public class BlogDao implements BlogConfig {
 
 	@Override
 	public BlogDto bView(Integer num) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = sft.openSession();
+		BlogDto dto = session.selectOne("net.jason.database.blogMapper.blogView", num);
+		session.close();
+		return dto;
 	}
 
 	@Override
 	public int bUpdate(BlogDto blogDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = sft.openSession();
+		int rs = session.update("net.jason.database.blogMapper.blogUpdate", blogDto);
+		session.close();
+		return rs;
 	}
 
 	@Override
@@ -55,14 +61,17 @@ public class BlogDao implements BlogConfig {
 
 	@Override
 	public int bDelete(Integer num) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = sft.openSession();
+		int rs = session.delete("net.jason.database.blogMapper.blogDelete", num);
+		session.commit();
+		session.close();
+		return rs;
 	}
 
 	@Override
 	public int fileInsert(FileDto fileDto) {
 		SqlSession session = sft.openSession();
-		session.insert("net.jason.database.blogMapper.insertFile", fileDto);
+		session.insert("net.jason.database.fileMapper.insertFile", fileDto);
 		session.commit();
 		session.close();
 		return fileDto.getNum();
@@ -70,14 +79,32 @@ public class BlogDao implements BlogConfig {
 
 	@Override
 	public int fileUpdate(FileDto fileDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = sft.openSession();
+		if(fileDto.getBlog_num() > 0) {
+			session.insert("net.jason.database.fileMapper.insertAfterUpdateFile", fileDto);
+		}else {
+			session.insert("net.jason.database.fileMapper.updateFile", fileDto);
+		}
+		session.commit();
+		session.close();
+		return fileDto.getNum();
 	}
 
 	@Override
 	public int fileDelete(Integer num) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = sft.openSession();
+		int rs = session.delete("net.jason.database.fileMapper.deleteFile", num);
+		session.commit();
+		session.close();
+		return rs;
+	}
+
+	@Override
+	public List<FileDto> fileList(int blognum) {
+		SqlSession session = sft.openSession();
+		List<FileDto> fdto = session.selectList("net.jason.database.fileMapper.listFile", blognum);
+		session.close();
+		return fdto;
 	}
 
 }

@@ -2,14 +2,14 @@ package net.jason.database;
 
 import java.util.List;
 
-public class BlogImpl implements BlogConfig {
+public class BlogImpl implements BlogConfig, FileConfig {
 
 	BlogDao dao = BlogDao.getInterface();
 	
 	@Override
 	public int bListCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.bListCount();
 	}
 
 	@Override
@@ -20,13 +20,13 @@ public class BlogImpl implements BlogConfig {
 	@Override
 	public BlogDto bView(Integer num) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.bView(num);
 	}
 
 	@Override
 	public int bUpdate(BlogDto blogDto) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.bUpdate(blogDto);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class BlogImpl implements BlogConfig {
 	@Override
 	public int bDelete(Integer num) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.bDelete(num);
 	}
 
 	@Override
@@ -48,14 +48,19 @@ public class BlogImpl implements BlogConfig {
 
 	@Override
 	public int fileUpdate(FileDto fileDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.fileUpdate(fileDto);
 	}
 
 	@Override
 	public int fileDelete(Integer num) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.fileDelete(num);
+	}
+
+	@Override
+	public List<FileDto> fileList(int blognum) {
+		// TODO Auto-generated method stub
+		return dao.fileList(blognum);
 	}
 
 }

@@ -29,7 +29,7 @@ public class UploadImageFile extends HttpServlet {
 	private static final String CHATSET = "utf-8";
 	private static final String ATTACHE_DIR = "C:\\Junghyun\\REACT\\myblog\\public\\data\\images";
 	private static final int LIMIT_SIZE = 1024 * 1024 * 100;
-	private static String nfilename = "h" + Integer.toString((int)System.currentTimeMillis() / 1000);
+	private static String nfilename = "h";
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
@@ -59,6 +59,7 @@ public class UploadImageFile extends HttpServlet {
 				//확장자
 				String ext = oname.substring(oname.indexOf('.'));
 				//새 파일 이름
+				nfilename = "h" + Integer.toString((int) (System.currentTimeMillis()/1000));
 				String nname = nfilename + ext;
 				File uploadedFile = new File(ATTACHE_DIR + File.separator + nname);
 				item.write(uploadedFile);

@@ -17,6 +17,7 @@
     
     <mappers>
        <mapper resource="net/jason/database/blogMapper.xml" />
+       <mapper resource="net/jason/database/fileMapper.xml" />
     </mappers>
     
 </configuration>    

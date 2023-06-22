@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import net.jason.database.BlogDto;
 import net.jason.database.BlogImpl;
+import net.jason.database.FileDto;
 
 @WebServlet("/insertok")
 public class InsertOk extends HttpServlet {
@@ -24,6 +25,8 @@ public class InsertOk extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		BlogImpl blogfile =  new BlogImpl();
 		BlogDto bDto = new BlogDto();
+		FileDto fdto = new FileDto();
+		
 		PrintWriter out = res.getWriter();
 		res.setContentType("text/html; charset=utf-8");
 		req.setCharacterEncoding("utf-8");
@@ -36,10 +39,13 @@ public class InsertOk extends HttpServlet {
 		bDto.setCategorya(req.getParameter("categorya"));
 		bDto.setCategoryb(req.getParameter("categoryb"));
 		bDto.setImname(imname);
-		int rs = blogfile.bInsert(bDto);
-//		int rss = blogfile.fileUpdate(rs);
+		int rs = blogfile.bInsert(bDto);	//본문에 등록하고 auto_increment된 값을 rs로 반환한다.
 		
-		//세션 아웃
+		fdto.setImname(imname);		//세션값으로 본문의 imname과 파일 테이블의 imname은 같은 값이다.
+		fdto.setBlog_num(rs);			//blog_num에 본문 번호를 넣는다. (외래키)
+		int rss = blogfile.fileUpdate(fdto);		//imname이 같은 테이블들을 업데이트 한다.
+		session.invalidate();		//세션 아웃
+		
 		//이미지 if else 를 이용해서 바뀌도록 처리
 		//관리자 모드 목록, 세부보기
 		//관리자 모드에 로그인 ...

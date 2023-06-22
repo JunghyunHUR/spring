@@ -10,8 +10,5 @@ public interface BlogConfig {
 	public int bUpdate(BlogDto blogDto);
 	public int bInsert(BlogDto blogDto);
 	public int bDelete(Integer num);
-	public int fileInsert(FileDto fileDto);
-	public int fileUpdate(FileDto fileDto);
-	public int fileDelete(Integer num);
 	
 }
