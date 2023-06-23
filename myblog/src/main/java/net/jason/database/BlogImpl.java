@@ -13,12 +13,12 @@ public class BlogImpl implements BlogConfig, FileConfig {
 	}
 
 	@Override
-	public List<BlogDto> bList() {
-		return dao.bList();
+	public List<BlogDto> bList(int page) {
+		return dao.bList(page);
 	}
 
 	@Override
-	public BlogDto bView(Integer num) {
+	public BlogDto bView(int num) {
 		// TODO Auto-generated method stub
 		return dao.bView(num);
 	}
@@ -35,7 +35,7 @@ public class BlogImpl implements BlogConfig, FileConfig {
 	}
 
 	@Override
-	public int bDelete(Integer num) {
+	public int bDelete(int num) {
 		// TODO Auto-generated method stub
 		return dao.bDelete(num);
 	}
@@ -52,7 +52,7 @@ public class BlogImpl implements BlogConfig, FileConfig {
 	}
 
 	@Override
-	public int fileDelete(Integer num) {
+	public int fileDelete(int num) {
 		// TODO Auto-generated method stub
 		return dao.fileDelete(num);
 	}

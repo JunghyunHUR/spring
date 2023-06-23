@@ -25,12 +25,16 @@ public class BlogList extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
+		String page = req.getParameter("page");
+		int pg =1;
+		if(page != null) {
+			pg = Integer.parseInt(page);
+		}
 		res.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = res.getWriter();
 		
 		BlogImpl blog = new BlogImpl();
-		List<BlogDto> dto = blog.bList();
+		List<BlogDto> dto = blog.bList(pg);
 		String gson = new Gson().toJson(dto);  //gson을 이용해 json 타입으로 변환
 		out.println(gson);
 		out.close();

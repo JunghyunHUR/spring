@@ -22,6 +22,9 @@ public class BlogDto {
     private String categorya;
     private String categoryb;
     private int imname;
+    private String fileName;
+    private int fileSize;
+    private String fileExt;
     
 	public int getNum() {
 		return num;
@@ -77,5 +80,24 @@ public class BlogDto {
 	public void setImname(int imname) {
 		this.imname = imname;
 	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public int getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
+	}
+	public String getFileExt() {
+		return fileExt;
+	}
+	public void setFileExt(String fileExt) {
+		this.fileExt = fileExt;
+	}
+	
 	
 }

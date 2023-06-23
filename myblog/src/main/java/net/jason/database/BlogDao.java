@@ -5,10 +5,13 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import net.jason.util.Pagination;
+
 public class BlogDao implements BlogConfig, FileConfig {
 
 	private static BlogDao dao;
 	private BlogDao() {}
+	private Pagination pagination;
 	
 	public static BlogDao getInterface() {
 		if(dao == null) dao = new BlogDao();
@@ -27,15 +30,18 @@ public class BlogDao implements BlogConfig, FileConfig {
 	}
 
 	@Override
-	public List<BlogDto> bList() {
+	public List<BlogDto> bList(int page) {
+		int totalCount = bListCount();
+		pagination = new Pagination();
+		pagination.setPageInfo(page, 12, 15, totalCount);
         SqlSession session = sft.openSession();
-        List<BlogDto> dto = session.selectList("net.jason.database.blogMapper.blogList");
+        List<BlogDto> dto = session.selectList("net.jason.database.blogMapper.blogList", pagination);
         session.close();
 		return dto;
 	}
 
 	@Override
-	public BlogDto bView(Integer num) {
+	public BlogDto bView(int num) {
 		SqlSession session = sft.openSession();
 		BlogDto dto = session.selectOne("net.jason.database.blogMapper.blogView", num);
 		session.close();
@@ -60,7 +66,7 @@ public class BlogDao implements BlogConfig, FileConfig {
 	}
 
 	@Override
-	public int bDelete(Integer num) {
+	public int bDelete(int num) {
 		SqlSession session = sft.openSession();
 		int rs = session.delete("net.jason.database.blogMapper.blogDelete", num);
 		session.commit();
@@ -91,7 +97,7 @@ public class BlogDao implements BlogConfig, FileConfig {
 	}
 
 	@Override
-	public int fileDelete(Integer num) {
+	public int fileDelete(int num) {
 		SqlSession session = sft.openSession();
 		int rs = session.delete("net.jason.database.fileMapper.deleteFile", num);
 		session.commit();

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.jason.database.BlogDto;
 import net.jason.database.BlogImpl;
 import net.jason.database.FileDto;
+import net.jason.util.Pagination;
 
 @WebServlet("/list")
 public class ListServlet extends HttpServlet {
@@ -30,11 +31,18 @@ public class ListServlet extends HttpServlet {
 		String links = "C:\\Junghyun\\REACT\\myblog\\public\\data\\images\\";	//파일이 있는 경로;
 		String fdata;
 		String flink;
+		String page = req.getParameter("page");
+		int pg =1;
+		if(page != null) {
+			pg = Integer.parseInt(page);
+		}
 		
 		res.setContentType("text/plain;charset=UTF-8");
-		PrintWriter out = res.getWriter();
 		
 		BlogImpl blog = new BlogImpl();
+		PrintWriter out = res.getWriter();
+		Pagination pagination = new Pagination();
+		
 		List<FileDto> flists = blog.fileList(0);
 		if(flists.size() > 0) {
 			for(FileDto flist : flists) {
@@ -51,7 +59,7 @@ public class ListServlet extends HttpServlet {
 			}
 		}	//쓰레기 파일 삭제하는 부분
 		
-		List<BlogDto> lists = blog.bList();
+		List<BlogDto> lists = blog.bList(pg);
 		
 		String content = null;
 		for(BlogDto list : lists) {
@@ -61,11 +69,24 @@ public class ListServlet extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+			List<FileDto> fdto = blog.fileList(list.getNum());
+			if(fdto.size() > 0) {
+				String filename = fdto.get(0).getNewname();
+				String fileExt = fdto.get(0).getExt();
+				int fileSize = (int)fdto.get(0).getFilesize();
+				
+				list.setFileName(filename);
+				list.setFileSize(fileSize);
+				list.setFileExt(fileExt);
+			}
 		}
+
+		int totalCnt = blog.bListCount();
+		pagination.setPageInfo(pg, 12, 15, totalCnt);
 		
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/list.jsp");
 		req.setAttribute("list", lists);
-		
+		req.setAttribute("pagination", pagination);
 		requestDispatcher.forward(req, res);
 	}
 

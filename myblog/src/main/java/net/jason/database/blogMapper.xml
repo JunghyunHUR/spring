@@ -11,9 +11,9 @@
 	<select id="blogView" parameterType="Integer" resultType="net.jason.database.BlogDto">
 		SELECT * FROM blog WHERE num=#{num}
 	</select>
-   
-	<select id="blogList" resultType="net.jason.database.BlogDto">
-		SELECT * FROM blog 
+
+	<select id="blogList" resultType="net.jason.database.BlogDto" parameterType="net.jason.util.Pagination">
+   		SELECT * FROM blog ORDER BY num DESC LIMIT #{startList}, #{listSize}
 	</select>
    
 	<insert id="blogInsert" parameterType="net.jason.database.BlogDto" useGeneratedKeys="true" keyProperty="num">
