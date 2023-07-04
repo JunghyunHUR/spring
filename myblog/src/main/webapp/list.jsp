@@ -7,11 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/style.css">
+<style>
+<%@ include file="css/reset.css" %>
+<%@ include file="css/style.css" %>
+</style>
 </head>
 <body>
     <h1 class="text-center title">목록보기</h1>
-    <p class="text-center titlep">관리자 모드</p>
+    <p class="text-center titlep"><a href="logout">관리자 모드</a></p>
     <div class="container">
         <ul class="row">
         <!-- 루프 -->

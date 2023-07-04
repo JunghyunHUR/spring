@@ -70,7 +70,6 @@ public class Pagination {
 		int startPage = (endPage - rangeSize) + 1;
 		
 		if(realend < endPage) endPage = realend;
-		System.out.println(endPage);
 		
 		//시작 번호
 		int startList = (page - 1) * listSize;

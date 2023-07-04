@@ -43,7 +43,8 @@ public class ListServlet extends HttpServlet {
 		PrintWriter out = res.getWriter();
 		Pagination pagination = new Pagination();
 		
-		List<FileDto> flists = blog.fileList(0);
+		
+		List<FileDto> flists = blog.fileList(pg);
 		if(flists.size() > 0) {
 			for(FileDto flist : flists) {
 				fdata = flist.getNewname();
