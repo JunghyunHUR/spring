@@ -1,28 +1,43 @@
 package net.jason.chat;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
-import org.w3c.dom.events.MouseEvent;
-
-public class Server extends JFrame {
+public class Server implements ActionListener {
+	
+	JTextField text;
+	JPanel a1;	
+	static Box vertical = Box.createVerticalBox();
+	static JFrame f = new JFrame();
+//	static DataOutputStream dos;
 
 	Server(){
 		
-		setLayout(null);
+		f.setLayout(null);
 		
 		JPanel p1 = new JPanel();
 		p1.setBackground(new Color(53, 69, 67));
 		p1.setBounds(0, 0, 450, 70);
 		p1.setLayout(null);
-		add(p1);
+		f.add(p1);
 		
 		ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/arrow2.png"));
 		Image i2 = i1.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT);
@@ -33,7 +48,6 @@ public class Server extends JFrame {
 		
 		back.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent ae) {
-				System.out.println("마우스클릭");
 				System.exit(0);
 			}
 		});
@@ -77,18 +91,84 @@ public class Server extends JFrame {
 		p1.add(name);
 		
 		JLabel status = new JLabel("Active Now");
-		status.setBounds(110, 35, 100, 18);
+		status.setBounds(110, 38, 100, 18);
 		status.setForeground(Color.WHITE);
 		status.setFont(new Font("SAN_SERIF", Font.BOLD, 14));
 		p1.add(status);
 		
-		setSize(450, 700);
-		setLocation(200, 50);
-		getContentPane().setBackground(Color.WHITE);
+		a1 = new JPanel();
+		a1.setBounds(5, 75, 440, 570);
+		f.add(a1);
+		
+		text = new JTextField();
+		text.setBounds(5, 650, 310, 40);
+		text.setFont(new Font("SAN_SERIF", Font.PLAIN, 16));
+		f.add(text);
+		
+		JButton send = new JButton("전송");
+		send.setBounds(320, 650, 123, 40);
+		send.setBackground(new Color(7, 94, 81));
+		send.setForeground(Color.WHITE);
+		send.addActionListener(this);
+		send.setFont(new Font("SAN_SERIF", Font.PLAIN, 16));
+		f.add(send);
+		
+		f.setSize(450, 700);
+		f.setLocation(200, 50);
+		f.setUndecorated(true);
+		f.getContentPane().setBackground(Color.WHITE);
 
-		setVisible(true);
+		f.setVisible(true);
 	}
 	public static void main(String[] args) {
 		new Server();
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		try {
+			String out = text.getText();
+			JPanel p2 = formatLabel(out);
+			
+			a1.setLayout(new BorderLayout());
+			
+			JPanel right = new JPanel(new BorderLayout());
+			
+			right.add(p2, BorderLayout.LINE_END); 
+			vertical.add(right);
+			vertical.add(Box.createVerticalStrut(15));
+			
+			a1.add(vertical, BorderLayout.PAGE_START);
+			
+//			dos.writeUTF(out);
+			text.setText("");
+			
+			f.repaint();
+			f.invalidate();
+			f.validate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static JPanel formatLabel(String out) {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		JLabel output = new JLabel("<html><body><p style=\"width:150px\">" + out + "</p></body></html>");
+		output.setFont(new Font("Gothic", Font.PLAIN, 16));
+		output.setBackground(new Color(37, 210, 100));
+		output.setOpaque(true);
+		output.setBorder(new EmptyBorder(15, 15, 15, 50));
+		
+		panel.add(output);
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH시 mm분");
+		
+		JLabel time = new JLabel();
+		time.setText(sdf.format(cal.getTime()));
+		panel.add(time);
+		
+		return panel;
 	}
 }
